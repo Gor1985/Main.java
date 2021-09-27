@@ -1,68 +1,74 @@
 
 package Server;
 
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.spi.CurrencyNameProvider;
 
 public class Server {
-    private static Object String;
-
     public static void main(String[] args) {
-        ArrayList<Socket> usersSocket = new ArrayList<>();
-        ArrayList<String>names=new ArrayList<>();
+        ArrayList<User> users = new ArrayList<>();
         try {
             ServerSocket serverSocket = new ServerSocket(8188);
-
             System.out.println("Сервер запущен");
-            while (true) {
+            while (true){
                 Socket socket = serverSocket.accept();
-                System.out.println("Подключился новый клиент. ");
-
-                usersSocket.add(socket);
-                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-                DataInputStream in = new DataInputStream(socket.getInputStream());
-
-                 DataInputStream bon=new DataInputStream(socket.getInputStream());
-                String name;
-                name=in.readUTF();
-                names.add(name);
-
-                //out.writeUTF(name);
+                System.out.println("Подключился новый клиент");
+                User currentUser = new User(socket);
+                users.add(currentUser);
+                currentUser.setOut(new DataOutputStream(currentUser.getSocket().getOutputStream()));
+                currentUser.setIn(new DataInputStream(currentUser.getSocket().getInputStream()));
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-
+                        String text;
                         try {
-                            for (String nameSoket:names);
-                            System.out.println(name+"");
+                            currentUser.getOut().writeUTF("Введите имя: ");
+                            String userName = currentUser.getIn().readUTF();
+                            currentUser.setUserName(userName);
+                            for (User user : users) {
+                                user.getOut().writeUTF("Пользователь "+currentUser.getUserName()+" присоеденился к беседе");
+                            }
+
                             while (true) {
-                                String text;
-                                text = in.readUTF();
-                                for (Socket userSocket : usersSocket) {
-                                    String mex=name+" :"+text;
-                                    System.out.println(mex);
+                                text = currentUser.getIn().readUTF();
+                                if(text.equals("/onlineUsers")){
+                                    String names = "Пользователи онлайн: ";
+                                    for (User user: users){
+                                        names += user.getUserName()+", ";
+                                    }
+                                    currentUser.getOut().writeUTF(names); // Отправили список
+                                }else{
+                                    // Рассылка сообщения
+                                    System.out.println(currentUser.getUserName()+": " + text);
+                                    for (User user : users) {
+                                        if (currentUser.getUuid().equals(user.getUuid())) continue;
+                                        user.getOut().writeUTF(currentUser.getUserName()+": " + text);
+                                    }
                                 }
+
                             }
                         } catch (IOException exception) {
-                            usersSocket.remove(socket);
-                            names.remove(name);
-                            System.out.println("Клиент отключился");
+                            users.remove(currentUser);
+                            for (User user : users) {
+                                try {
+                                    user.getOut().writeUTF("Пользователь "+currentUser.getUserName()+" покинул беседу");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            System.out.println("Пользователь "+currentUser.getUserName()+" покинул беседу");
                         }
                     }
                 });
                 thread.start();
-
             }
-
-
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-
     }
 }
