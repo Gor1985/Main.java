@@ -21,7 +21,7 @@ public class Server {
             while (true) {
                 Socket socket = serverSocket.accept();
 
-                User currentUser = new User(socket, User.class.getName());
+                User currentUser = new User(socket);
 
 
                 users.add(currentUser);
@@ -64,13 +64,13 @@ public class Server {
                                     }
                                     currentUser.getOut().writeUTF(names); // Отправили список
                                 }else if (text.indexOf("/n")==0){
-                                  String[] na= text.split("");
-                                  for (User user:users) {
-                                      if (user.getUserName().equals(na[1])) {
-                                          user.getOut().writeUTF(na[2]);
-                                          break;
-                                      }
-                                  }
+                                    String[] na= text.split("");
+                                    for (User user:users) {
+                                        if (user.getUserName().equals(na[1])) {
+                                            user.getOut().writeUTF(na[2]);
+                                            break;
+                                        }
+                                    }
                                 } else {
                                     // Рассылка сообщения
                                     System.out.println(currentUser.getUserName() + ": " + text);
@@ -110,4 +110,3 @@ public class Server {
         }
     }
 }
-

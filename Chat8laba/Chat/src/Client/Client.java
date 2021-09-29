@@ -10,7 +10,7 @@ public class Client {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
-            Socket socket = new Socket("127.0.0.1", 8188);
+            Socket socket = new Socket("45.141.78.118", 8188);
             System.out.println("Успешно подключен!");
             // Поток ввода
             DataInputStream in = new DataInputStream(socket.getInputStream());

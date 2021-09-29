@@ -13,10 +13,10 @@ public class User<addNewUser> {
     private DataInputStream in;
 
 
-    public User(Socket socket,String userName) {
+    public User(Socket socket) {
         this.socket = socket;
         this.uuid = UUID.randomUUID(); // Уникальный идентификатор пользователя
-      this.userName=userName;
+
     }
 
     public Socket getSocket() { return socket; }
