@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="300" prefWidth="250" spacing="20.0" style="-fx-background-color: #4682B4;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guichat.HelloController">
+<VBox alignment="CENTER" prefHeight="300" prefWidth="250" spacing="20.0" style="-fx-background-color: #4682B4; -fx-background-color: #4169E1;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guichat.HelloController">
     <children>
         <TextArea fx:id="textArea" editable="false" prefHeight="275" prefWidth="250.0">
          <font>
@@ -17,8 +17,23 @@
         <HBox prefHeight="25" prefWidth="250.0">
             <children>
                 <TextField fx:id="textField" onAction="#handlerSend" prefWidth="170" style="-fx-alignment: #ADFF2F;" />
-                <Button mnemonicParsing="false" onAction="#handlerSend" prefWidth="80" text="Отправить" textFill="#7c1717" />
+                <Button mnemonicParsing="false" onAction="#handlerSend" prefWidth="80" style="-fx-alignment: #1E90FF;" text="Отправить" textFill="#7c1717" />
             </children>
         </HBox>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Выход">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Exit" />
+            </items>
+
+          </Menu>
+            <Menu mnemonicParsing="false" text="Список пользователей">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Список пользователей" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
     </children>
 </VBox>
