@@ -1,3 +1,5 @@
+import java.util.Objects;
+// все персоны работают 
 public class Main {
     public static void main(String[] args) {
 
@@ -8,7 +10,8 @@ public class Main {
         Person person4=new Person(80,"Виталий",null,null);
         Person person5=new Person(45,"Матильда",person4,person3);
         Person person6=new Person(20,"Алексей",person2,person5);
-        person6.info();
+        // person6.info();
+        person1.info();
     }
 }
         class Person {
@@ -17,28 +20,40 @@ public class Main {
             Person father;
             Person mather;
 
+
             Person(int age, String name, Person father, Person mather) {
                 this.age = age;
                 this.name = name;
                 this.father = father;
                 this.mather = mather;
             }
-        void info() {
-        String nik = "Мое имя " + this.name + "\n";
-        nik += "Мне " + this.age + " лет";
-        if (this.mather != null) {
-        nik += " Мою маму зовут " + this.mather.name + ", а моего папу зовут " + this.father.name + "\n";
-        nik += "Моей маме " + this.mather.age + ", а моему папе " + this.father.age + "\n";
-        if (this.mather.mather != null) ;
-        nik += "Мою бабушку по маминой линии зовут " + this.mather.mather.name + " Моего дедушку по маминой линии зовут " + this.mather.father.name + "\n";
-        nik += "Моей бабушке Ольге " + this.mather.mather.age + ", моему дедушке Виталию " + this.mather.father.age + "\n";
-        if (this.father.father != null && this.father.mather != null) ;
-        nik += "Моего дедушку по папиной линии зовут " + this.father.father.name + " ему " + this.father.father.age + " лет" + "\n";
-        nik += "Мою бабушку по папиной линии зовут " + this.father.mather.name + " ей " + this.father.mather.age + " лет";
-    }
 
-            System.out.println(nik);
-}
+
+            void info() {
+                String nik = "Мое имя " + this.name + "\n";
+
+                nik += "Мне " + this.age + " лет ";
+                if (this.mather != null & this.father!=null) {
+                    nik += "мою маму зовут " + this.mather.name + "\n";
+                    nik += "Моей маме " + this.mather.age + " лет" + "\n";
+                    nik += "Моего папу зовут " + this.father.name + "\n";
+                    nik += "Моему папе " + this.father.age + " лет" + "\n";
+                    if (this.mather.father != null && this.mather.mather != null) {
+                        nik += "Мою бабушку по маминой линии зовут " + this.mather.mather.name + "\n";
+                        nik += "Моего дедушку по маминой линии зовут " + this.mather.father.name + "\n";
+                        nik += "Моего дедушку по папиной линии зовут " + this.father.father.name + "\n";
+                        nik += "Мою бабушку по папиной линии зовут " + this.father.mather.name + "\n";
+                    }
+                }
+
+
+
+                System.out.println(nik);
+
+            }
+
+
+
             public Person getFather() {
                 return father;
             }
