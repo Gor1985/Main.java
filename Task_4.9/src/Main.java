@@ -1,13 +1,13 @@
 public class Main {
     public static void main(String[] args) {
 
-        Person person=new Person(65,"Василий",null,null);
+     Person person=new Person(65,"Василий",null,null);
         Person person1=new Person(70,"Светлана",null,null);
         Person person2=new Person(50,"Олег",person,person1);
         Person person3=new Person(75,"Ольга",null,null);
         Person person4=new Person(80,"Виталий",null,null);
         Person person5=new Person(45,"Матильда",person4,person3);
-        Person person6=new Person(20,"Свинота",person2,person5);
+        Person person6=new Person(20,"Алексей",person2,person5);
     person6.info();
     }
 }
@@ -30,7 +30,7 @@ public class Main {
 void info(){
         String nik="Мое имя "+this.name+"\n";
         nik+="Мне "+this.age+" лет";
-        if (this.mather!=null && this.father!=null){
+        if (this.mather!=null){
             nik+=" Мою маму зовут "+this.mather.name+", а моего папу зовут "+this.father.name+"\n";
 nik+="Моей маме "+this.mather.age+", а моему папе "+this.father.age+"\n";
 if (this.mather.mather!=null && this.mather.father!=null);
