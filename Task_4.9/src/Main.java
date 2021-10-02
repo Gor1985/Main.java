@@ -1,5 +1,5 @@
 import java.util.Objects;
-// все персоны работают 
+// все персоны работают
 public class Main {
     public static void main(String[] args) {
 
@@ -11,7 +11,7 @@ public class Main {
         Person person5=new Person(45,"Матильда",person4,person3);
         Person person6=new Person(20,"Алексей",person2,person5);
         // person6.info();
-        person1.info();
+        person6.info();
     }
 }
         class Person {
