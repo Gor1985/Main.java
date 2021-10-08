@@ -24,7 +24,7 @@ public class MainActivity<quetationsIndex> extends AppCompatActivity {
    ArrayList man = new ArrayList();
 
 
-    ArrayList praviln = new ArrayList();
+
 
 
     Quetation[] quetations = {
@@ -36,7 +36,7 @@ public class MainActivity<quetationsIndex> extends AppCompatActivity {
 
     };
     int quetationsIndex = 0;
-
+      int i=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class MainActivity<quetationsIndex> extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(true);
-                Intent(true);
+
                 Int();
             }
         });
@@ -64,7 +64,7 @@ public class MainActivity<quetationsIndex> extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(false);
-                Intent(false);
+
                 Int();
             }
         });
@@ -84,30 +84,26 @@ public class MainActivity<quetationsIndex> extends AppCompatActivity {
     public void checkAnswer(boolean btn) {
         if (quetations[quetationsIndex].isAnswer() && btn || (!quetations[quetationsIndex].isAnswer() && !btn)) {
             Toast.makeText(MainActivity.this, R.string.correct, Toast.LENGTH_SHORT).show();
+            i++;
             String question = getString(quetations[quetationsIndex].getQuetationText());
-            man.add("Вопрос: " + question + " Ваш ответ правильный ");
-            Log.d("HHH1", question);
-        } else
+            man.add("Вопрос: " + question + " Ваш ответ правильный "+"\n");
+
+
+            Log.d("HHH1", String.valueOf(i));
+
+        } else{
             Toast.makeText(MainActivity.this, R.string.inCorrect, Toast.LENGTH_SHORT).show();
+            String question = getString(quetations[quetationsIndex].getQuetationText());
+        man.add("Вопрос: " + question + " Ваш ответ неправильный "+"\n");
+        Log.d("HHH", question);
+    }
         quetationsIndex = (quetationsIndex + 1) % quetations.length;
-        String question = getString(quetations[quetationsIndex].getQuetationText());
-            man.add("Вопрос: " + question + " Ваш ответ неправильный ");
-            Log.d("HHH", question);
             textView.setText(quetations[quetationsIndex].getQuetationText());
         }
 
 
 
 
-
-        public void Intent ( boolean btn){
-
-            if (quetations[quetationsIndex].isAnswer()) {
-                praviln.add("Правильных ответов: " + quetationsIndex);
-
-            }
-
-        }
         public void Int () {
             if (quetationsIndex >= quetations.length - 1) {
 
@@ -115,8 +111,8 @@ public class MainActivity<quetationsIndex> extends AppCompatActivity {
                 Log.d("Maybe", String.valueOf(man));
                 Intent intent = new Intent(MainActivity.this, Spisok.class);
                 intent.putExtra("Mane", man);
-                intent.putExtra("Vane", praviln);
-
+                intent.putExtra("Vane", i);
+             Log.d("fffff", String.valueOf(i));
                 startActivity(intent);
 
 

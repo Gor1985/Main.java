@@ -17,14 +17,9 @@ import java.util.HashSet;
 
 public class Spisok extends AppCompatActivity {
 
-    quetations[] quetations = {
-            new quetations(R.string.quistation1, true),
-            new quetations(R.string.quistation2, true),
-            new quetations(R.string.quistation3, false),
-            new quetations(R.string.quistation4, true),
-            new quetations(R.string.quistation5, false)
 
-    };
+
+
 
 
     @Override
@@ -32,15 +27,16 @@ public class Spisok extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spisok);
         TextView textView = findViewById(R.id.textView3);
-
+          TextView textView1=findViewById(R.id.textView4);
 
      ArrayList gan = (ArrayList) getIntent().getSerializableExtra("Mane");
 
-        // ArrayList van = (ArrayList) getIntent().getSerializableExtra("Vane");
+     String man= String.valueOf(getIntent().getIntExtra("Vane",0));
 
-      //textView.setText(gan.toString());
+      textView.setText(gan.toString()+"\n");
+      textView1.setText("Количество правильных ответов: "+man);
 
-                    Log.d("Maga", gan+ "\n");
+                    Log.d("Maga", man+"");
 
                 // textView.setText(van + "\n");
             }
