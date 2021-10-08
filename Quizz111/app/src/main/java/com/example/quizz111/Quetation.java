@@ -5,9 +5,11 @@ public class Quetation {
     private boolean answer;
 
 
+
     public Quetation(int quetationText, boolean answer) {
         QuetationText = quetationText;
         this.answer = answer;
+
     }
     public int getQuetationText() {
         return QuetationText;
@@ -16,7 +18,6 @@ public class Quetation {
     public boolean isAnswer() {
         return answer;
     }
-
 
 
     }

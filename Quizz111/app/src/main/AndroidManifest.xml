@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quizz111">
         <activity
+            android:name=".Spisok"
+            android:exported="true" />
+        <activity
+            android:name=".Tah"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

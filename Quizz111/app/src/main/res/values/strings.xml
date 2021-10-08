@@ -1,13 +1,17 @@
 <resources>
+
+
     <string name="app_name">Quizz111</string>
     <string name="Да">Да</string>
     <string name="Нет">Нет</string>
     <string name="correct">Правильно</string>
     <string name="inCorrect">Неправильно</string>
+
     <string name="quistation1">Солнце это звезда?</string>
     <string name="quistation2">Арбуз это ягода?</string>
     <string name="quistation3">Дельфин это рыба?</string>
     <string name="quistation4">Каспийское море это озеро?</string>
     <string name="quistation5">Пермь это столица РФ?</string>
+
 
 </resources>
